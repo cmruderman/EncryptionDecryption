@@ -54,6 +54,10 @@ int main(int argc, char *argv[]) {
     	swap(S[i], S[j]);
     }
 
+    i=j=0;
+
+    generateKeyByte(S)
+
    
 
    // encrypt_data(input, output, keyFile); //XOR data and write it to file
@@ -85,7 +89,7 @@ char generateKeyByte(char s[]){
     static int i = 0;
     static int j = 0;
     i = (i + 1) % 256;
-    j = (j + S[i]) mod256;
+    j = (j + S[i]) % 256;
     swap (S[i], S[j]);
     t = (S[i] + S[j]) % 256
     return S[t]
