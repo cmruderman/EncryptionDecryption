@@ -19,7 +19,8 @@ int main(int argc, char *argv[]) {
     int prevChar;
     int i;
 
-    if (argc < 3) printf("Input and output files need to be specified\n");
+    if (argc < 3) 
+    	printf("Input and output files need to be specified\n");
     keyFile = fopen(argv[1], "r");
     ifp = fopen(argv[2], "r");
     ofp = fopen(argv[3], "w");
@@ -28,7 +29,7 @@ int main(int argc, char *argv[]) {
     assert(ofp != NULL);
 
 
-     while ((inputChar = fgetc(ifp))!=EOF) {
+     while ((inputChar = fgetc(ifp))!=EOF){
        fputc(inputChar, ofp); 
      }
     fclose(ifp);
