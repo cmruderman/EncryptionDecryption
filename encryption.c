@@ -34,9 +34,9 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);  //test if message is there
     assert(ofp != NULL);   //test if output file is there
 
-    int kLength;
+    int kLength 0;
     while ((keyFileChar = fgetc(keyFile)) != EOF && kLength < 256){ //scans in keyFile and stores in key
-        //key[keyFileCounter++] = (char)fgetc(keyFile); 
+        key[kLength++] = (char)fgetc(keyFile); 
         kLength++;
      }
 
@@ -78,8 +78,9 @@ void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
     int key_byte;
     
     while((encrypt_byte = fgetc(input_file)) != EOF && ((encrypt_byte = fgetc(keyFile)) != EOF)){ //Loop through each byte of file until EOF
-        key[key_count] = (char)fgetc(keyFile); 
         fputc(encrypt_byte ^ key[key_count], output_file); //XOR the data and write it to a file
+        key[key_count] = (char)fgetc(keyFile); 
+        generateKeyByte(S);
         key_count++;
     }
 }
