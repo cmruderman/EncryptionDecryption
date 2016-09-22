@@ -30,7 +30,20 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
+    char *key = malloc(MAX_SIZE);
+    printf("Passphrase: "); // read in key
+    fgets(key, MAX_SIZE, stdin);
+
+    //strip newlines
+    strip_newline(key);
+
+    //XOR data and write it to file
+    encrypt_data(input, output, key);
     
+    printf("Encrypted data written to %s\n", argv[2]);
+
+    //Release memory
+    free(key);
 
      while ((inputChar = fgetc(ifp))!=EOF){
        fputc(inputChar, ofp); 
