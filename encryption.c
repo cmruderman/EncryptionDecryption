@@ -80,3 +80,27 @@ void encrypt_data(FILE* input_file, FILE* output_file, char* keyFile){
         key_count++;
     }
 }
+
+char generateKeyByte(char s[]){
+    static int i = 0;
+    static int j = 0;
+    i = (i + 1) % 256;
+    j = (j + S[i]) mod256;
+    swap (S[i], S[j]);
+    t = (S[i] + S[j]) % 256
+    return S[t]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
