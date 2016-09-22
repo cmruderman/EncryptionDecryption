@@ -24,6 +24,8 @@ int main(int argc, char *argv[]) {
     char *key = malloc(256 * sizeof(char));
     int *S = malloc(i * sizeof(int));
     int *T = malloc(i * sizeof(int));
+    S = (int *) malloc(i * sizeof(int));
+    T = (int *) malloc(i * sizeof(int));
    
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
