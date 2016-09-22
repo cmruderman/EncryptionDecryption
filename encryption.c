@@ -21,9 +21,8 @@ int main(int argc, char *argv[]) {
     int i;
     int j;
     char key[256]; //space for 256 characters
-    int S[256];
-    int T[256];
-
+    int S[256]; // State vector 
+    int T[256]; // Temporary vector
    
     if (argc < 3) 
     	printf("Input, output, and keyFile need to be specified\n");
@@ -39,7 +38,7 @@ int main(int argc, char *argv[]) {
     while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
         key[keyFileCounter++] = (char)fgetc(keyFile);
      }
-    int kLength = key.length
+    int kLength = key.length;
     S[i] = i;
     T[i] = key[i % kLength];
     
