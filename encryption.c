@@ -42,8 +42,8 @@ int main(int argc, char *argv[]) {
 
 }
 
-void swap(int a, int b){
-    int temp = a;
-    a = b;
-    b = temp;
+void swap(int* a, int* b){
+ int temp = *a;
+ *a = *b;
+ *b = temp;
 }
