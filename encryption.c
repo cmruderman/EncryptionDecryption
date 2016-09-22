@@ -22,8 +22,9 @@ int main(int argc, char *argv[]) {
     int j;
     int keyFileCounter;
     char *keyChars = (char *) malloc(256 * sizeof(char)); //space for 256 characters
-    int *S = (int *) malloc(i * sizeof(int));
-    int *T = (int *) malloc(i * sizeof(int));
+    int S[256];
+    int T[256];
+
    
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
@@ -41,7 +42,7 @@ int main(int argc, char *argv[]) {
     j = 0;
     for(i = 0; i < 256; i++){
     	j = (j+*(S+i)+*(T+i)) % 256;
-    	swap(*(S+i), *(S+j));
+    	swap(S[i], S[j]);
     }
 
     keyFileCounter = 0;
@@ -70,5 +71,6 @@ void encrypt_data(FILE* input_file, FILE* output_file, char* keyFile){
     
     while( (encrypt_byte = fgetc(input_file)) != EOF){//Loop through each byte of file until EOF
         fputc(encrypt_byte ^ keyFile[key_count], output_file); //XOR the data and write it to a file
+        key_count++;
     }
 }
