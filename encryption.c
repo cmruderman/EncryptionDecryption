@@ -14,11 +14,14 @@ int main(int argc, char *argv[]) {
 	FILE *keyFile;
     FILE *ifp;
     FILE *ofp;
+    int keyFileChar;
     int inputChar;
     int outputChar;
     int prevChar;
     int i;
     int j;
+    int keyFileCounter;
+    char *key = malloc(256 * sizeof(char));
 
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
@@ -30,23 +33,13 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
-    char *key = malloc(MAX_SIZE);
-    printf("Passphrase: "); // read in key
-    fgets(key, MAX_SIZE, stdin);
-
-    //strip newlines
-    strip_newline(key);
-
-    //XOR data and write it to file
-    encrypt_data(input, output, key);
+    encrypt_data(input, output, keyFile); //XOR data and write it to file
     
     printf("Encrypted data written to %s\n", argv[2]);
 
-    //Release memory
-    free(key);
-
-     while ((inputChar = fgetc(ifp))!=EOF){
-       fputc(inputChar, ofp); 
+    keyFileCounter = 0;
+    while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
+        *key++ = (char)fgetc(keyFile); 
      }
 
     fclose(keyFile);
@@ -59,4 +52,13 @@ void swap(int* a, int* b){
  int temp = *a;
  *a = *b;
  *b = temp;
+}
+
+void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
+    int key_count = 0; //Restart if strlen(keyFile) < strlen(encrypt)
+    int encrypt_byte;
+    
+    while( (encrypt_byte = fgetc(input_file)) != EOF){//Loop through each byte of file until EOF
+        fputc(encrypt_byte ^ keyFile[key_count], output_file); //XOR the data and write it to a file
+    }
 }
