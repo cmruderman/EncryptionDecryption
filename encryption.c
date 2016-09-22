@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
     int inputChar;
     int outputChar;
     int prevChar;
-    int Chris;
     int i;
 
     if (argc < 3) printf("Input and output files need to be specified\n");
