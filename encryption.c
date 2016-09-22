@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     int i;
     int j;
     int keyFileCounter;
-    char *key = (char *) malloc(256 * sizeof(char));
+    char *keyChars = (char *) malloc(256 * sizeof(char)); //space for 256 characters
     int *S = (int *) malloc(i * sizeof(int));
     int *T = (int *) malloc(i * sizeof(int));
    
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     assert(ofp != NULL);
 
     S[i] = i;
-    T[i] = key[i % kLength]);
+    T[i] = key[i % kLength];
     
     j = 0;
     for(i = 0; i < 256; i++){
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 
     keyFileCounter = 0;
     while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
-        *key++ = (char)fgetc(keyFile); 
+        *keyChars++ = (char)fgetc(keyFile); 
      }
 
     encrypt_data(input, output, keyFile); //XOR data and write it to file
@@ -64,7 +64,7 @@ void swap(int* a, int* b){
 	*b = temp;
 }
 
-void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
+void encrypt_data(FILE* input_file, FILE* output_file, char* keyFile){
     int key_count = 0; //Restart if strlen(keyFile) < strlen(encrypt)
     int encrypt_byte;
     
