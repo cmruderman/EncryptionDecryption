@@ -21,6 +21,9 @@ int main(int argc, char *argv[]) {
     int j;
     int *S;
     int *T;
+    
+    S = (int *) malloc(i * sizeof(int));
+    T = (int *) malloc(i * sizeof(int));
 
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
@@ -32,7 +35,7 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
-    S = (int *) malloc(i * sizeof(int));
+    S[i] = i;
     T[i] = key[i % kLength]);
     
     j = 0;
@@ -52,7 +55,7 @@ int main(int argc, char *argv[]) {
 }
 
 void swap(int* a, int* b){
- int temp = *a;
- *a = *b;
- *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
