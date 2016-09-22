@@ -55,8 +55,6 @@ int main(int argc, char *argv[]) {
     i = 0;
     j = 0;
 
-    generateKeyByte(S);
-
    // encrypt_data(input, output, keyFile); //XOR data and write it to file
 
     fclose(keyFile);
@@ -76,7 +74,7 @@ void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
     int encrypt_byte;
     int key_byte;
     
-    while((encrypt_byte = fgetc(input_file)) != EOF && ((encrypt_byte = fgetc(keyFile)) != EOF)){ //Loop through each byte of file until EOF
+    while(((encrypt_byte = fgetc(input_file)) != EOF) && ((encrypt_byte = fgetc(keyFile)) != EOF)){ //Loop through each byte of file until EOF
         fputc(encrypt_byte ^ key[key_count], output_file); //XOR the data and write it to a file
         key[key_count] = (char)fgetc(keyFile); 
         generateKeyByte(S);
