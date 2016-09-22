@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
     int outputChar;
     int prevChar;
     int i;
+    int j;
 
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
@@ -29,6 +30,7 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
+    
 
      while ((inputChar = fgetc(ifp))!=EOF){
        fputc(inputChar, ofp); 
