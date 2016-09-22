@@ -34,12 +34,11 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);  //test if message is there
     assert(ofp != NULL);   //test if output file is there
 
-    int keyFileCounter = 0;
-    while ((keyFileChar = fgetc(keyFile)) != EOF && keyFileCounter < 256){ //scans in keyFile and stores in key
-        key[keyFileCounter++] = (char)fgetc(keyFile);
+    int kLength;
+    while ((keyFileChar = fgetc(keyFile)) != EOF && kLength < 256){ //scans in keyFile and stores in key
+        //key[keyFileCounter++] = (char)fgetc(keyFile); 
+        kLength++;
      }
-
-    int kLength = key.length;
 
     i = 0;
     while(i < 256){
