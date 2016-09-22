@@ -38,9 +38,14 @@ int main(int argc, char *argv[]) {
     while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
         key[keyFileCounter++] = (char)fgetc(keyFile);
      }
+
     int kLength = key.length;
-    S[i] = i;
-    T[i] = key[i % kLength];
+
+    i=0;
+    while(i<256){
+        S[i] = i; //what is i?
+        T[i] = key[i % kLength];
+    }
     
     j = 0;
     for(i = 0; i < 256; i++){
