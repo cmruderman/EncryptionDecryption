@@ -92,17 +92,3 @@ char generateKeyByte(char s[]){
     t = (S[i] + S[j]) % 256
     return S[t]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
