@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);  //test if message is there
     assert(ofp != NULL);   //test if output file is there
 
+<<<<<<< HEAD
     int kLength 0;
     while ((keyFileChar = fgetc(keyFile)) != EOF && kLength < 256){ //scans in keyFile and stores in key
         key[kLength++] = (char)fgetc(keyFile); 
