@@ -20,27 +20,26 @@ int main(int argc, char *argv[]) {
     int prevChar;
     int i;
     int j;
-    int keyFileCounter;
     char key[256]; //space for 256 characters
     int S[256];
     int T[256];
 
    
     if (argc < 3) 
-    	printf("Input and output files need to be specified\n");
-    keyFile = fopen(argv[1], "r");
+    	printf("Input, output, and keyFile need to be specified\n");
+    keyFile = fopen(argv[1], "r"); 
     ifp = fopen(argv[2], "r");
     ofp = fopen(argv[3], "w");
 
-    assert(keyFile != NULL);
-    assert(ifp != NULL);
-    assert(ofp != NULL);
+    assert(keyFile != NULL); //test if keyFile is there
+    assert(ifp != NULL);  //test if message is there
+    assert(ofp != NULL);   //test if output file is there
 
-    keyFileCounter = 0;
+    int keyFileCounter = 0;
     while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
         key[keyFileCounter++] = (char)fgetc(keyFile);
      }
-
+    int kLength = key.length
     S[i] = i;
     T[i] = key[i % kLength];
     
@@ -61,10 +60,10 @@ int main(int argc, char *argv[]) {
 
 }
 
-void swap(int* a, int* b){
-	int temp = *a;
-	*a = *b;
-	*b = temp;
+void swap(int a, int b){
+	int temp = a;
+	a = b;
+	b = temp;
 }
 
 void encrypt_data(FILE* input_file, FILE* output_file, char* keyFile){
