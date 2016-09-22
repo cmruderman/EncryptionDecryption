@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     	swap(S[i], S[j]);
     }
 
-    i=j=0;
+    i, j=0;
 
     generateKeyByte(S)
 
