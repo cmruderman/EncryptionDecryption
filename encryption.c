@@ -20,13 +20,10 @@ int main(int argc, char *argv[]) {
     int prevChar;
     int i;
     int j;
-<<<<<<< HEAD
     int keyFileCounter;
     char *key = malloc(256 * sizeof(char));
-=======
     int *S;
     int *T;
->>>>>>> master
 
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
@@ -38,11 +35,9 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
-<<<<<<< HEAD
     encrypt_data(input, output, keyFile); //XOR data and write it to file
     
     printf("Encrypted data written to %s\n", argv[2]);
-=======
     S = (int *) malloc(i * sizeof(int));
     T[i] = key[i % kLength]);
     
@@ -51,7 +46,6 @@ int main(int argc, char *argv[]) {
     	j = (j+*(S+i)+*(T+i)) % 256;
     	swap(*(S+i), *(S+j));
     }
->>>>>>> master
 
     keyFileCounter = 0;
     while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
