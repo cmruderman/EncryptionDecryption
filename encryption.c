@@ -20,19 +20,14 @@ int main(int argc, char *argv[]) {
     int prevChar;
     int i;
     int j;
-<<<<<<< HEAD
+    int keyFileCounter;
+    char *key = malloc(256 * sizeof(char));
     int *S;
     int *T;
     
     S = (int *) malloc(i * sizeof(int));
     T = (int *) malloc(i * sizeof(int));
-=======
-    int keyFileCounter;
-    char *key = malloc(256 * sizeof(char));
-    int *S;
-    int *T;
->>>>>>> my-branch
-
+   
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
     keyFile = fopen(argv[1], "r");
@@ -43,7 +38,6 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
-<<<<<<< HEAD
     S[i] = i;
     T[i] = key[i % kLength]);
     
@@ -52,24 +46,13 @@ int main(int argc, char *argv[]) {
     	j = (j+*(S+i)+*(T+i)) % 256;
     	swap(*(S+i), *(S+j));
     }
-=======
+
     keyFileCounter = 0;
     while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
         *key++ = (char)fgetc(keyFile); 
      }
 
-    
-    S = (int *) malloc(i * sizeof(int));
-    T[i] = key[i % kLength]);
-    
-    j = 0;
-    for(i = 0; i < 256; i++){
-        j = (j+*(S+i)+*(T+i)) % 256;
-        swap(*(S+i), *(S+j));
-    }
-
     encrypt_data(input, output, keyFile); //XOR data and write it to file
->>>>>>> my-branch
 
 
     fclose(keyFile);
@@ -79,14 +62,9 @@ int main(int argc, char *argv[]) {
 }
 
 void swap(int* a, int* b){
-<<<<<<< HEAD
 	int temp = *a;
 	*a = *b;
 	*b = temp;
-=======
- int temp = *a;
- *a = *b;
- *b = temp;
 }
 
 void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
@@ -96,5 +74,4 @@ void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
     while( (encrypt_byte = fgetc(input_file)) != EOF){//Loop through each byte of file until EOF
         fputc(encrypt_byte ^ keyFile[key_count], output_file); //XOR the data and write it to a file
     }
->>>>>>> my-branch
 }
