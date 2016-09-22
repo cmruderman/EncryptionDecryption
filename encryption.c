@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
     ifp = fopen(argv[2], "r");
     ofp = fopen(argv[3], "w");
 
+    assert(keyFile != NULL);
     assert(ifp != NULL);
     assert(ofp != NULL);
 
@@ -32,7 +33,15 @@ int main(int argc, char *argv[]) {
      while ((inputChar = fgetc(ifp))!=EOF){
        fputc(inputChar, ofp); 
      }
+
+    fclose(keyFile);
     fclose(ifp);
     fclose(ofp);
 
+}
+
+void swap(int a, int b){
+    int temp = a;
+    a = b;
+    b = temp;
 }
