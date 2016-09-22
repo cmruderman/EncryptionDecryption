@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
     int i;
     int j;
     char key[256]; // Space for 256 characters
-    int S[256]; // State vector 
-    int T[256]; // Temporary vector
+    char S[256]; // State vector 
+    char T[256]; // Temporary vector
    
     if (argc < 3) 
     	printf("Input, output, and keyFile need to be specified\n");
@@ -45,8 +45,9 @@ int main(int argc, char *argv[]) {
     while(i<256){
         S[i] = i; //what is i?
         T[i] = key[i % kLength];
+        i++;
     }
-    
+
     j = 0;
     for(i = 0; i < 256; i++){
     	j = (j+S[i]+T[i]) % 256;
@@ -64,8 +65,8 @@ int main(int argc, char *argv[]) {
 
 }
 
-void swap(int a, int b){
-	int temp = a;
+void swap(char a, char b){
+	char temp = a;
 	a = b;
 	b = temp;
 }
