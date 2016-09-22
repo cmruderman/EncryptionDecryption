@@ -19,6 +19,8 @@ int main(int argc, char *argv[]) {
     int prevChar;
     int i;
     int j;
+    int [[S]];
+    int [[T]];
 
     if (argc < 3) 
     	printf("Input and output files need to be specified\n");
@@ -30,7 +32,14 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
+    S[i] = i;
+    T[i] = key[i % kLength]);
     
+    j = 0;
+    for(i = 0; i < 256; i++){
+    	j = (j+S[i]+T[i]) % 256;
+    	swap(S[i], S[j]);
+    }
 
      while ((inputChar = fgetc(ifp))!=EOF){
        fputc(inputChar, ofp); 
