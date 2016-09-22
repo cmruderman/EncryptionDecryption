@@ -35,22 +35,23 @@ int main(int argc, char *argv[]) {
     assert(ifp != NULL);
     assert(ofp != NULL);
 
-    encrypt_data(input, output, keyFile); //XOR data and write it to file
+    keyFileCounter = 0;
+    while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
+        *key++ = (char)fgetc(keyFile); 
+     }
+
     
-    printf("Encrypted data written to %s\n", argv[2]);
     S = (int *) malloc(i * sizeof(int));
     T[i] = key[i % kLength]);
     
     j = 0;
     for(i = 0; i < 256; i++){
-    	j = (j+*(S+i)+*(T+i)) % 256;
-    	swap(*(S+i), *(S+j));
+        j = (j+*(S+i)+*(T+i)) % 256;
+        swap(*(S+i), *(S+j));
     }
 
-    keyFileCounter = 0;
-    while ((keyFileChar = fgetc(keyFile))!=EOF && keyFileCounter<256){ //scans in keyFile and stores in key
-        *key++ = (char)fgetc(keyFile); 
-     }
+    encrypt_data(input, output, keyFile); //XOR data and write it to file
+
 
     fclose(keyFile);
     fclose(ifp);
