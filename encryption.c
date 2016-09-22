@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     assert(ofp != NULL);   //test if output file is there
 
     int kLength;
-    while ((keyFileChar = fgetc(keyFile)) != EOF && kLength < 256){ //scans in keyFile and stores in key
+    while (((keyFileChar = fgetc(keyFile)) != EOF) && (kLength < 256)){ //scans in keyFile and stores in key
         //key[keyFileCounter++] = (char)fgetc(keyFile); 
         kLength++;
      }
