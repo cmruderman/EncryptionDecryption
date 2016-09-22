@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     
     j = 0;
     for(i = 0; i < 256; i++){
-    	j = (j+*(S+i)+*(T+i)) % 256;
+    	j = (j+S[i]+T[i]) % 256;
     	swap(S[i], S[j]);
     }
 
