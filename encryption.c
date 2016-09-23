@@ -87,6 +87,7 @@ char generateKeyByte(char s[]){
     i = (i + 1) % 256;
     j = (j + S[i]) % 256;
     swap (S[i], S[j]);
-    t = (S[i] + S[j]) % 256;
-    return S[t];
+    int t = (S[i] + S[j]) % 256;
+    char keybyte = S[t]
+    return keybyte;
 }
