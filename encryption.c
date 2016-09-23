@@ -74,10 +74,11 @@ void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
     int encrypt_byte;
     int key_byte;
     
-    while(((encrypt_byte = fgetc(input_file)) != EOF) && ((key_byte = fgetc(keyFile)) != EOF)){ //Loop through each byte of file until EOF
-        key[key_count] = (char)fgetc(keyFile); 
+    while((encrypt_byte = fgetc(input_file)) != EOF){ //Loop through each byte of file until EOF
+        // key[key_count] = (char)fgetc(keyFile);
+        char keystream = generateKeyByte(key) 
         fputc(encrypt_byte ^ key[key_count], output_file); //XOR the data and write it to a file
-        key_count++;
+        // key_count++;
     }
 }
 
@@ -88,6 +89,6 @@ char generateKeyByte(char s[]){
     j = (j + S[i]) % 256;
     swap (S[i], S[j]);
     int t = (S[i] + S[j]) % 256;
-    char keybyte = S[t]
+    char keybyte = S[t];
     return keybyte;
 }
