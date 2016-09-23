@@ -75,8 +75,9 @@ void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
     int key_byte;
     
     while(((encrypt_byte = fgetc(input_file)) != EOF) && ((key_byte = fgetc(keyFile)) != EOF)){ //Loop through each byte of file until EOF
-        key[key_count++] = (char)fgetc(keyFile); 
+        key[key_count] = (char)fgetc(keyFile); 
         fputc(encrypt_byte ^ key[key_count], output_file); //XOR the data and write it to a file
+        key_count++;
     }
 }
 
