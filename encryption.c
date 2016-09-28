@@ -8,10 +8,18 @@
 #include <math.h>
 #include <assert.h>
 
+void swap(char a, char b);
+void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile);
+char generateKeyByte(char s[]);
+
+
+char key[256]; // Space for 256 characters
+char S[256]; // State vector 
+char T[256]; // Temporary vector
 
 int main(int argc, char *argv[]) {
 
-	FILE *keyFile;
+    FILE *keyFile;
     FILE *ifp;
     FILE *ofp;
     int keyFileChar;
@@ -20,9 +28,6 @@ int main(int argc, char *argv[]) {
     int prevChar;
     int i;
     int j;
-    char key[256]; // Space for 256 characters
-    char S[256]; // State vector 
-    char T[256]; // Temporary vector
    
     if (argc < 3) 
     	printf("Input, output, and keyFile need to be specified\n");
@@ -35,7 +40,7 @@ int main(int argc, char *argv[]) {
     assert(ofp != NULL);   //test if output file is there
 
     int kLength = 0;
-    while (((keyFileChar = fgetc(keyFile)) != EOF) && (kLength < 256)){ //scans in keyFile and stores in key
+    while (((keyFileChar = fgetc(keyFile)) != feof(keyFile)) && (kLength < 256)){ //scans in keyFile and stores in key
         key[kLength++] = (char)keyFileChar; 
     }
 
@@ -51,11 +56,7 @@ int main(int argc, char *argv[]) {
     	j = (j+S[i] + T[i]) % 256;
     	swap(S[i], S[j]);
     }
-
-    i = 0;
-    j = 0;
-
-   // encrypt_data(input, output, keyFile); //XOR data and write it to file
+    encrypt_data(ifp, ofp, keyFile); //XOR data and write it to file
 
     fclose(keyFile);
     fclose(ifp);
@@ -74,11 +75,9 @@ void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
     int encrypt_byte;
     int key_byte;
     
-    while((encrypt_byte = fgetc(input_file)) != EOF){ //Loop through each byte of file until EOF
-        // key[key_count] = (char)fgetc(keyFile);
-        char keystream = generateKeyByte(key) 
-        fputc(encrypt_byte ^ key[key_count], output_file); //XOR the data and write it to a file
-        // key_count++;
+    while((encrypt_byte = fgetc(input_file)) != feof(input_file)){ //Loop through each byte of file until EOF
+        char keystream = generateKeyByte(key); 
+        fputc(encrypt_byte ^ keystream, output_file); //XOR the data and write it to a file
     }
 }
 
