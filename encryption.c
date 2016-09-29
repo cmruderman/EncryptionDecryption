@@ -40,8 +40,8 @@ int main(int argc, char *argv[]) {
     assert(ofp != NULL);   //test if output file is there
 
     int kLength = 0;
-    while (((keyFileChar = fgetc(keyFile)) != feof(keyFile)) && (kLength < 256)){ //scans in keyFile and stores in key
-        key[kLength++] = (char)keyFileChar; 
+    while ((((keyFileChar = fgetc(keyFile))) != EOF) && (kLength < 256)){ //scans in keyFile and stores in key
+            key[kLength++] = (char)keyFileChar; 
     }
 
     i = 0;
@@ -56,6 +56,7 @@ int main(int argc, char *argv[]) {
     	j = (j+S[i] + T[i]) % 256;
     	swap(S[i], S[j]);
     }
+    
     encrypt_data(ifp, ofp, keyFile); //XOR data and write it to file
 
     fclose(keyFile);
@@ -75,7 +76,7 @@ void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){
     int encrypt_byte;
     int key_byte;
     
-    while((encrypt_byte = fgetc(input_file)) != feof(input_file)){ //Loop through each byte of file until EOF
+    while((encrypt_byte = fgetc(input_file)) != EOF){ //Loop through each byte of file until EOF
         char keystream = generateKeyByte(key); 
         fputc(encrypt_byte ^ keystream, output_file); //XOR the data and write it to a file
     }
