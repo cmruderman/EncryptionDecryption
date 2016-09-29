@@ -1,8 +1,5 @@
 // Lab 1 by Chris Ingerson, Corey Ruderman, & Dan Travis
 
-// Reads the input file 
-// character by character and then prints what it just read.
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
