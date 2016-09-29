@@ -9,7 +9,6 @@ void swap(char a, char b);
 void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile);
 char generateKeyByte(char s[]);
 
-
 char key[256]; // Space for 256 characters
 char S[256]; // State vector 
 char T[256]; // Temporary vector
@@ -26,8 +25,10 @@ int main(int argc, char *argv[]) {
     int i;
     int j;
    
-    if (argc < 3) 
+    if (argc < 3) {
     	printf("Input, output, and keyFile need to be specified\n");
+    	exit(0);
+    }
     keyFile = fopen(argv[1], "r"); //Argument 1 is the key file
     ifp = fopen(argv[2], "r"); //Argument 2 is the input file
     ofp = fopen(argv[3], "w"); //Argument 3 is the output file
@@ -72,16 +73,28 @@ void swap(char a, char b){ //swap two characters
 	b = temp;
 }
 
-void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){ //Symmetric cipher
-    int key_count = 0; 												   //Can encrypt & decrypt with this function
+void encrypt_data(FILE* input_file, FILE* output_file, FILE* keyFile){ //Symmetric cipher												   //Can encrypt & decrypt with this function
     int encrypt_byte;
     int key_byte;
-    
-    while((encrypt_byte = fgetc(input_file)) != EOF){ //Read the input file char by char
+    int input[100];
+    int keystrm[100];
+    int output[100];
+    size_t pos = ftell(input_file);    // Current position
+ 	fseek(input_file, 0, SEEK_END);    // Go to end
+ 	size_t length = ftell(input_file); // read the position which is the size
+ 	fseek(input_file, pos, SEEK_SET);  // restore original position
+    while(((encrypt_byte = fgetc(input_file)) != EOF)){ //Read the input file char by char
         char keystream = generateKeyByte(key); //generate next element of key stream
-        fputc(encrypt_byte ^ keystream, output_file); //XOR key byte with input byte and write to output
+        int x = encrypt_byte ^ (int)keystream;
+        fputc(x, output_file); //XOR key byte with input byte and write to output
+        	// input[i]=encrypt_byte;
+        	// keystrm[i]=(int)keystream;
+        	// output[i]=((input[i] ^ (int)keystrm[i]));
+        	// printf("%u %u %u\n", input[i], keystrm[i], output[i]);
+        }
+        
     }
-}
+
 
 char generateKeyByte(char s[]){  //Generate next key byte 
     static int i = 0; 
