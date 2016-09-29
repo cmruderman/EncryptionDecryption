@@ -44,12 +44,16 @@ int main(int argc, char *argv[]) {
             key[kLength++] = (char)keyFileChar; //Load key array and increment kLength to keep track of char
     }
 
+    assert(kLength>0);
+
     i = 0;
     while(i < 256){    //Initialize arrays S and T
         S[i] = i; 
         T[i] = key[i % kLength];
         i++;
     }
+
+    assert(S[0] == 0);
 
     j = 0;
     for(i = 0; i < 256; i++){    //permutate S and T
